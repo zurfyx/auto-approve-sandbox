@@ -1,0 +1,10 @@
+name: Lexical Tests
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions: {}
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ok
