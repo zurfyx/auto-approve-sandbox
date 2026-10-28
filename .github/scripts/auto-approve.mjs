@@ -308,7 +308,8 @@ async function findPr(repo) {
   if (matches.length !== 1) {
     skip(`${matches.length} open PRs have head ${sha}`);
   }
-  return matches[0];
+  // The list endpoint omits commits/changed_files; read the full PR.
+  return (await gh(`/repos/${repo}/pulls/${matches[0].number}`)).data;
 }
 
 async function evaluate(repo, pr, owners, defaultBranch) {
